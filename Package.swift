@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
   name: "SemanticVersion",
-  products: [.library(name: "SemanticVersion", targets: ["SemanticVersion"])],
+  products: [.library(name: "SemanticVersion", type: .dynamic, targets: ["SemanticVersion"])],
   dependencies: [],
   targets: [
     .target(name: "SemanticVersion", dependencies: [], path:".", sources:["Sources"]),
