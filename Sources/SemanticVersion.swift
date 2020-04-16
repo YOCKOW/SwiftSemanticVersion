@@ -128,15 +128,17 @@ public struct SemanticVersion {
   
   public init?(_ string:String) {
     let split: (String, Character) -> (String, String?) = {
-      if let index = $0.index(of:$1) {
-        #if swift(>=4.0)
-        return (String($0[$0.startIndex..<index]), String($0[$0.index(after:index)..<$0.endIndex]))
-        #else
-        return ($0[$0.startIndex..<index], $0[$0.index(after:index)..<$0.endIndex])
-        #endif
-      } else {
-        return ($0, nil)
-      }
+      #if swift(>=5.0)
+      guard let index = $0.firstIndex(of: $1) else { return ($0, nil) }
+      #else
+      guard let index = $0.index(of: $1) else { return ($0, nil) }
+      #endif
+      
+      #if swift(>=4.0)
+      return (String($0[$0.startIndex..<index]), String($0[$0.index(after:index)..<$0.endIndex]))
+      #else
+      return ($0[$0.startIndex..<index], $0[$0.index(after:index)..<$0.endIndex])
+      #endif
     }
     
     let (majorMinorPatchPrerelease, buildMetadata): (String, String?) = split(string, "+")
