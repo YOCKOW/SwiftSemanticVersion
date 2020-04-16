@@ -7,23 +7,18 @@
 
 import Foundation
 
-/**
- 
- # SemanticVersion
- Represents for [semantic versioning](http://semver.org/)
- 
- ```
- let version = SemanticVersion("1.0.0-beta.2+20170904.001")!
- // {
- //   major: 1,
- //   minor: 0,
- //   patch: 0,
- //   prereleaseIdentifiers: "beta.2"
- //   buildMetadataIdentifiers: "20170904.001"
- // }
- ```
- 
- */
+/// Represents for [semantic versioning](http://semver.org/)
+///
+/// ```
+/// let version = SemanticVersion("1.0.0-beta.2+20170904.001")!
+/// // {
+/// //   major: 1,
+/// //   minor: 0,
+/// //   patch: 0,
+/// //   prereleaseIdentifiers: "beta.2"
+/// //   buildMetadataIdentifiers: "20170904.001"
+/// // }
+/// ```
 public struct SemanticVersion {
   fileprivate enum Component: CustomStringConvertible, Comparable {
     case integer(UInt)
